@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jupiter changes</title>
+<style>
+  :root { --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --soft:#f9fafb; --brand:#ff6a13;
+          --ok-bg:#dcfce7; --ok:#166534; --test-bg:#dbeafe; --test:#1e40af; --plan-bg:#fef3c7; --plan:#92400e; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:#fff; }
+  main { max-width: 980px; margin: 0 auto; padding: 28px 20px 48px; }
+  header { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px; }
+  h1 { font-size:20px; font-weight:600; margin:0; }
+  h1 span { color: var(--brand); }
+  .sub { color:var(--muted); font-size:12px; margin-top:2px; }
+  .tools { display:flex; gap:8px; }
+  input, select { font:inherit; font-size:13px; padding:6px 10px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+  .row, .head { display:grid; grid-template-columns: 160px minmax(0,1fr) 92px 84px 40px; gap:14px; align-items:center; padding:11px 6px; }
+  .head { font-size:12px; color:var(--muted); border-bottom:1px solid var(--line); }
+  .row { border-bottom:1px solid var(--line); cursor:pointer; }
+  .row:hover { background: var(--soft); }
+  .area { font-weight:600; }
+  .count { color: var(--muted); font-size:12px; }
+  .pill { font-size:11px; padding:2px 9px; border-radius:999px; white-space:nowrap; }
+  .Live { background:var(--ok-bg); color:var(--ok); } .Testing { background:var(--test-bg); color:var(--test); } .Planned { background:var(--plan-bg); color:var(--plan); }
+  .thumb { width:36px; height:26px; border-radius:4px; border:1px solid var(--line); object-fit:cover; display:block; }
+  .hist { grid-column: 1 / -1; background: var(--soft); border-radius:8px; padding:10px 14px; margin: 0 0 10px; cursor:default; }
+  .entry { display:grid; grid-template-columns: 92px minmax(0,1fr); gap:12px; padding:8px 0; border-bottom:1px solid var(--line); }
+  .entry:last-child { border-bottom:0; }
+  .shots { display:flex; gap:10px; margin-top:6px; flex-wrap:wrap; }
+  .shots figure { margin:0; font-size:11px; color:var(--muted); }
+  .shots img { width:220px; border-radius:6px; border:1px solid var(--line); display:block; cursor:zoom-in; }
+  .empty { color:var(--muted); padding:30px 6px; }
+  .viewer { position:fixed; inset:0; background:rgba(0,0,0,.7); display:flex; align-items:center; justify-content:center; padding:24px; }
+  .viewer img { max-width:100%; max-height:100%; border-radius:8px; background:#fff; }
+  @media (max-width: 640px) { .row, .head { grid-template-columns: 110px minmax(0,1fr) 70px; } .row > :nth-child(4), .row > :nth-child(5), .head > :nth-child(4), .head > :nth-child(5) { display:none; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div><h1><span>Jupiter</span> changes</h1><div class="sub" id="summary">Loading…</div></div>
+    <div class="tools"><input id="q" placeholder="Search changes" aria-label="Search changes"><select id="st" aria-label="Status"><option value="">All statuses</option><option>Live</option><option>Testing</option><option>Planned</option></select></div>
+  </header>
+  <div class="head"><span>Area</span><span>Latest change</span><span>Updated</span><span>Status</span><span></span></div>
+  <div id="list"><div class="empty">Loading the change log…</div></div>
+</main>
+<script>
+const DATA = [
+ {
+  "id": "booking-page",
+  "history": [
+   {
+    "after": "screenshots/change-07-times.jpg",
+    "before": "screenshots/booking-page-before.jpg",
+    "date": "2026-11-17",
+    "text": "On the test version (jupiter~test), zip ready for Bong to upload: 'Book [service]' and 'See times only' buttons under the address (booked services show a green label); booking opens at the top; booking side 64% / map 36%; step strip Who › Times › Confirm › Done; who and request type shrink to one line with 'change'; time cards show rank, technician's full name and extra drive minutes; 'Not offered' in plain words; property access folded under 'More details for planners'."
+   },
+   {
+    "date": "2026-11-17",
+    "text": "Service history (one round at a time) made live after diagnostics (only service_history.js, spine.js and manage_view.js differed; all load)."
+   },
+   {
+    "after": "screenshots/service-history.jpg",
+    "date": "2026-11-17",
+    "text": "On the test version (jupiter~test): 'Journey 9, 10' replaced by a 'Service history' box showing only the round chosen on the timeline (the current one to start with): what it was, its dates, a status (To book, Booked, On hold, Done, Not required) and each booking with its date, how it ended and the technician. Clicking another block on the timeline shows that round instead, so the booking section is never pushed down."
+   },
+   {
+    "date": "2026-11-17",
+    "text": "Tenant cards and 'Request came by' made live after diagnostics."
+   },
+   {
+    "after": "screenshots/tenant-cards.jpg",
+    "date": "2026-11-17",
+    "text": "On the test version: 'Speaking with' tenant cards (phone numbers and emails together) and a 'Request came by' row: Phone call, SMS, Email, Internal."
+   },
+   {
+    "date": "2026-11-17",
+    "text": "Agency restrictions, 'Not offered' section and block reasons made live after diagnostics."
+   },
+   {
+    "after": "screenshots/not-offered-agency.jpg",
+    "date": "2026-11-17",
+    "text": "On the test version: Jupiter reads each agency's Booking Restrictions and leaves those times out (e.g. Gary Peer & Associates Caulfield: no Gas - Standard on Fridays). 'Not offered' names each reason."
+   },
+   {
+    "after": "screenshots/blocked-reasons.jpg",
+    "date": "2026-11-17",
+    "text": "On the test version: when a whole property is blocked, the rules that block it are listed by name (454220)."
+   }
+  ],
+  "latest": "Booking page layout (Book buttons at top, step strip, ranked time cards) on test, waiting for Bong's upload",
+  "name": "Property booking page",
+  "screenshot": "screenshots/change-07-times.jpg",
+  "status": "Testing",
+  "updated": "2026-11-17"
+ },
+ {
+  "id": "confirm-step",
+  "history": [
+   {
+    "date": "2026-11-17",
+    "text": "Made live after diagnostics (only booking.js and manage_view.js differed; both load; live checked for the new code). Reviewed by Bong on 1337527, 506339 and 452109."
+   },
+   {
+    "after": "screenshots/confirm-notes-attributes.jpg",
+    "date": "2026-11-17",
+    "text": "On the test version (jupiter~test): the confirm step has a 'Booking notes' box and the 10 booking attributes of the current system as buttons with icons. Each is picked by hand, click again to remove. Notes and attributes appear in the 'done' summary and go with the booking event. They aren't saved anywhere yet because the Book button doesn't book yet."
+   }
+  ],
+  "latest": "Booking notes box and the 10 booking attribute buttons (saved once Book really books)",
+  "name": "Confirm step",
+  "screenshot": "screenshots/confirm-notes-attributes.jpg",
+  "status": "Live",
+  "updated": "2026-11-17"
+ },
+ {
+  "id": "home-search",
+  "history": [
+   {
+    "date": "2026-11-17",
+    "text": "Made live after diagnostics: same 69 files, only search.js and toolbar.js changed, every page loads, and 14 everyday searches give the same results as before."
+   },
+   {
+    "after": "screenshots/search-after.jpg",
+    "before": "screenshots/search-before.jpg",
+    "date": "2026-11-17",
+    "text": "On the test version (jupiter~test): a phone number or email finds the tenants who hold it now and their property; a tenant's name shows property ID and address; state, postcode and 'Australia' at the end of an address are ignored. All results open the booking page directly."
+   }
+  ],
+  "latest": "Phone, email and full-address search; tenant results show property ID and address",
+  "name": "Home search",
+  "screenshot": "screenshots/search-after.jpg",
+  "status": "Live",
+  "updated": "2026-11-17"
+ },
+ {
+  "id": "properties-list",
+  "history": [
+   {
+    "after": "screenshots/where-tag-link-is.jpg",
+    "date": "2026-11-13",
+    "text": "Bulk cancel and bulk book switched off. They now say \"Not enabled in Jupiter yet\" and send nothing."
+   },
+   {
+    "date": "2026-11-13",
+    "text": "Copied as-is from Brett's tool."
+   }
+  ],
+  "latest": "Bulk cancel and bulk book switched off",
+  "name": "Properties list",
+  "screenshot": "screenshots/where-tag-link-is.jpg",
+  "status": "Live",
+  "updated": "2026-11-13"
+ },
+ {
+  "id": "real-booking",
+  "history": [
+   {
+    "date": "2026-11-17",
+    "text": "Bong's decision: no booking is completed from Jupiter and nothing is changed in the main system. After testing, Jupiter goes to Marcus for approval; if approved, Brett makes booking official. Noted for then: appointments only to start, trial before opening to everyone, a final confirm prompt, 'Request came by' at the start of the booking notes."
+   }
+  ],
+  "latest": "On hold: Jupiter stays a prototype that never completes a booking. Real booking needs Marcus's approval, then Brett builds it",
+  "name": "Book button (real bookings)",
+  "screenshot": "",
+  "status": "Planned",
+  "updated": "2026-11-17"
+ },
+ {
+  "id": "tags-page",
+  "history": [
+   {
+    "after": "screenshots/tags-page.jpg",
+    "date": "2026-11-13",
+    "text": "Saving and closing tags switched off. Pressing them shows \"Not enabled in Jupiter yet\"."
+   }
+  ],
+  "latest": "Saving and closing tags switched off",
+  "name": "Tags page",
+  "screenshot": "screenshots/tags-page.jpg",
+  "status": "Live",
+  "updated": "2026-11-13"
+ },
+ {
+  "id": "whole-tool",
+  "history": [
+   {
+    "date": "2026-11-13",
+    "text": "Exact copy of Brett's whole_new_world tool, checked byte for byte. Live at /SupernovaSandbox/sites/jupiter/."
+   }
+  ],
+  "latest": "Copied from Brett's tool (all 69 files) and put under Bong's name in Operations",
+  "name": "Whole tool",
+  "screenshot": "",
+  "status": "Live",
+  "updated": "2026-11-13"
+ }
+];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" })[c]);
+const fmt = d => d ? new Date(d + "T00:00").toLocaleDateString("en-AU", { day:"numeric", month:"short", year:"numeric" }) : "—";
+let rows = [], open = new Set();
+function draw() {
+  const q = document.getElementById("q").value.trim().toLowerCase(), st = document.getElementById("st").value;
+  const shown = rows.filter(r => (!st || r.status === st) && (!q || JSON.stringify([r.name, r.latest, r.history]).toLowerCase().includes(q)))
+    .sort((a, b) => (b.updated || "").localeCompare(a.updated || "") || a.order - b.order);
+  const last = rows.map(r => r.updated).filter(Boolean).sort().pop();
+  document.getElementById("summary").textContent = `Snapshot of 17 Nov 2026 · one row per area · ${rows.length} areas · last change ${fmt(last)}`;
+  const list = document.getElementById("list");
+  if (!shown.length) { list.innerHTML = `<div class="empty">${rows.length ? "No changes match." : "No changes logged yet."}</div>`; return; }
+  list.innerHTML = shown.map(r => {
+    const h = r.history || [];
+    const thumb = r.screenshot ? `<img class="thumb" src="${esc(r.screenshot)}" alt="Screenshot of ${esc(r.name)}">` : "";
+    const hist = open.has(r.id) ? `<div class="hist">${h.length ? h.map(e => `<div class="entry"><b>${fmt(e.date)}</b><div>${esc(e.text)}${(e.before || e.after) ? `<div class="shots">${e.before ? `<figure><img src="${esc(e.before)}" alt="Before"><figcaption>Before</figcaption></figure>` : ""}${e.after ? `<figure><img src="${esc(e.after)}" alt="After"><figcaption>After</figcaption></figure>` : ""}</div>` : ""}</div></div>`).join("") : "No earlier changes."}</div>` : "";
+    return `<div class="row" data-id="${esc(r.id)}"><span class="area">${esc(r.name)}</span><span>${esc(r.latest)}${h.length > 1 ? ` <span class="count">· ${h.length} changes</span>` : ""}</span><span>${fmt(r.updated)}</span><span><span class="pill ${esc(r.status)}">${esc(r.status)}</span></span><span>${thumb}</span></div>${hist}`;
+  }).join("");
+}
+document.getElementById("list").addEventListener("click", e => {
+  const img = e.target.closest(".hist img, .thumb");
+  if (img) { e.stopPropagation(); const v = document.createElement("div"); v.className = "viewer"; v.innerHTML = `<img src="${img.src}" alt="">`; v.onclick = () => v.remove(); document.body.append(v); return; }
+  const row = e.target.closest(".row"); if (!row) return;
+  open.has(row.dataset.id) ? open.delete(row.dataset.id) : open.add(row.dataset.id); draw();
+});
+document.getElementById("q").oninput = draw; document.getElementById("st").onchange = draw;
+rows = DATA.map((d, i) => ({ order: i, ...d }));
+draw();
+</script>
+</body>
+</html>
