@@ -47,157 +47,8 @@
   <div id="list"><div class="empty">Loading the change log…</div></div>
 </main>
 <script>
-const DATA = [
- {
-  "id": "booking-page",
-  "history": [
-   {
-    "after": "screenshots/change-07-times.jpg",
-    "before": "screenshots/booking-page-before.jpg",
-    "date": "2026-11-17",
-    "text": "On the test version (jupiter~test), zip ready for Bong to upload: 'Book [service]' and 'See times only' buttons under the address (booked services show a green label); booking opens at the top; booking side 64% / map 36%; step strip Who › Times › Confirm › Done; who and request type shrink to one line with 'change'; time cards show rank, technician's full name and extra drive minutes; 'Not offered' in plain words; property access folded under 'More details for planners'."
-   },
-   {
-    "date": "2026-11-17",
-    "text": "Service history (one round at a time) made live after diagnostics (only service_history.js, spine.js and manage_view.js differed; all load)."
-   },
-   {
-    "after": "screenshots/service-history.jpg",
-    "date": "2026-11-17",
-    "text": "On the test version (jupiter~test): 'Journey 9, 10' replaced by a 'Service history' box showing only the round chosen on the timeline (the current one to start with): what it was, its dates, a status (To book, Booked, On hold, Done, Not required) and each booking with its date, how it ended and the technician. Clicking another block on the timeline shows that round instead, so the booking section is never pushed down."
-   },
-   {
-    "date": "2026-11-17",
-    "text": "Tenant cards and 'Request came by' made live after diagnostics."
-   },
-   {
-    "after": "screenshots/tenant-cards.jpg",
-    "date": "2026-11-17",
-    "text": "On the test version: 'Speaking with' tenant cards (phone numbers and emails together) and a 'Request came by' row: Phone call, SMS, Email, Internal."
-   },
-   {
-    "date": "2026-11-17",
-    "text": "Agency restrictions, 'Not offered' section and block reasons made live after diagnostics."
-   },
-   {
-    "after": "screenshots/not-offered-agency.jpg",
-    "date": "2026-11-17",
-    "text": "On the test version: Jupiter reads each agency's Booking Restrictions and leaves those times out (e.g. Gary Peer & Associates Caulfield: no Gas - Standard on Fridays). 'Not offered' names each reason."
-   },
-   {
-    "after": "screenshots/blocked-reasons.jpg",
-    "date": "2026-11-17",
-    "text": "On the test version: when a whole property is blocked, the rules that block it are listed by name (454220)."
-   }
-  ],
-  "latest": "Booking page layout (Book buttons at top, step strip, ranked time cards) on test, waiting for Bong's upload",
-  "name": "Property booking page",
-  "screenshot": "screenshots/change-07-times.jpg",
-  "status": "Testing",
-  "updated": "2026-11-17"
- },
- {
-  "id": "confirm-step",
-  "history": [
-   {
-    "date": "2026-11-17",
-    "text": "Made live after diagnostics (only booking.js and manage_view.js differed; both load; live checked for the new code). Reviewed by Bong on 1337527, 506339 and 452109."
-   },
-   {
-    "after": "screenshots/confirm-notes-attributes.jpg",
-    "date": "2026-11-17",
-    "text": "On the test version (jupiter~test): the confirm step has a 'Booking notes' box and the 10 booking attributes of the current system as buttons with icons. Each is picked by hand, click again to remove. Notes and attributes appear in the 'done' summary and go with the booking event. They aren't saved anywhere yet because the Book button doesn't book yet."
-   }
-  ],
-  "latest": "Booking notes box and the 10 booking attribute buttons (saved once Book really books)",
-  "name": "Confirm step",
-  "screenshot": "screenshots/confirm-notes-attributes.jpg",
-  "status": "Live",
-  "updated": "2026-11-17"
- },
- {
-  "id": "home-search",
-  "history": [
-   {
-    "date": "2026-11-17",
-    "text": "Made live after diagnostics: same 69 files, only search.js and toolbar.js changed, every page loads, and 14 everyday searches give the same results as before."
-   },
-   {
-    "after": "screenshots/search-after.jpg",
-    "before": "screenshots/search-before.jpg",
-    "date": "2026-11-17",
-    "text": "On the test version (jupiter~test): a phone number or email finds the tenants who hold it now and their property; a tenant's name shows property ID and address; state, postcode and 'Australia' at the end of an address are ignored. All results open the booking page directly."
-   }
-  ],
-  "latest": "Phone, email and full-address search; tenant results show property ID and address",
-  "name": "Home search",
-  "screenshot": "screenshots/search-after.jpg",
-  "status": "Live",
-  "updated": "2026-11-17"
- },
- {
-  "id": "properties-list",
-  "history": [
-   {
-    "after": "screenshots/where-tag-link-is.jpg",
-    "date": "2026-11-13",
-    "text": "Bulk cancel and bulk book switched off. They now say \"Not enabled in Jupiter yet\" and send nothing."
-   },
-   {
-    "date": "2026-11-13",
-    "text": "Copied as-is from Brett's tool."
-   }
-  ],
-  "latest": "Bulk cancel and bulk book switched off",
-  "name": "Properties list",
-  "screenshot": "screenshots/where-tag-link-is.jpg",
-  "status": "Live",
-  "updated": "2026-11-13"
- },
- {
-  "id": "real-booking",
-  "history": [
-   {
-    "date": "2026-11-17",
-    "text": "Bong's decision: no booking is completed from Jupiter and nothing is changed in the main system. After testing, Jupiter goes to Marcus for approval; if approved, Brett makes booking official. Noted for then: appointments only to start, trial before opening to everyone, a final confirm prompt, 'Request came by' at the start of the booking notes."
-   }
-  ],
-  "latest": "On hold: Jupiter stays a prototype that never completes a booking. Real booking needs Marcus's approval, then Brett builds it",
-  "name": "Book button (real bookings)",
-  "screenshot": "",
-  "status": "Planned",
-  "updated": "2026-11-17"
- },
- {
-  "id": "tags-page",
-  "history": [
-   {
-    "after": "screenshots/tags-page.jpg",
-    "date": "2026-11-13",
-    "text": "Saving and closing tags switched off. Pressing them shows \"Not enabled in Jupiter yet\"."
-   }
-  ],
-  "latest": "Saving and closing tags switched off",
-  "name": "Tags page",
-  "screenshot": "screenshots/tags-page.jpg",
-  "status": "Live",
-  "updated": "2026-11-13"
- },
- {
-  "id": "whole-tool",
-  "history": [
-   {
-    "date": "2026-11-13",
-    "text": "Exact copy of Brett's whole_new_world tool, checked byte for byte. Live at /SupernovaSandbox/sites/jupiter/."
-   }
-  ],
-  "latest": "Copied from Brett's tool (all 69 files) and put under Bong's name in Operations",
-  "name": "Whole tool",
-  "screenshot": "",
-  "status": "Live",
-  "updated": "2026-11-13"
- }
-];
+const DATA = [{"id": "booking-page", "name": "Property booking page", "status": "Testing", "updated": "2026-11-24", "latest": "On test (Changes 9–16, 24 Nov): booking-only page in IBA's look; Preferences panel (Change / Remove); 'See times only' back, also on booked services; done step with a big tick and 'Booking completed'", "history": [{"date": "2026-11-24", "text": "On the test version (Change 16): 'See times only' back beside every Book button, and beside a booked service's label (now with its date). Look only: nothing booked or saved; on a booked service it shows other times that would work, e.g. to move it."}, {"date": "2026-11-24", "text": "On the test version (Change 15): Remove / Change on a preference tries the system up to 3 times and checks the rule was really closed; plain message if it can't save (the relations service sometimes drops its database connection)."}, {"date": "2026-11-24", "text": "On the test version (Change 13): page centred at any width; chips under the address removed; staff shown by name ('Roderick Moreno · change'); 'See all times (IBA)' removed; history cards titled by service only."}, {"date": "2026-11-24", "text": "On the test version (Change 12): IBA's look (purple, Roboto, white cards); agency link opens the DI agency page; 'live · time', prototype label, map and 'More details for planners' removed; Preferences panel always shown with Change / Remove; booking history with column labels (Date, Booking type, Technician / reason, Status)."}, {"date": "2026-11-24", "text": "On the test version (Change 11): chips moved under the address with plain words; plain descriptions above Jupiter's and IBA's times that change with each click."}, {"date": "2026-11-23", "text": "On the test version (Change 10): ranks removed; 'Book all three' / 'Book both' (two columns, two bookings, never one technician for all three); 'See all times (IBA)' with IBA's own times, paged 5 / 10 / 20, drive minutes estimated."}, {"date": "2026-11-23", "text": "On the test version (Change 9): a Book button per combination, no See times only; timeline and service history line removed; service cards with each service's bookings; confirm step one line per detail with type and warranty; attributes optional; staff number shown."}, {"date": "2026-11-19", "text": "On the test version (Change 8, after Bong's review): the Getting in / Speaking with / Request came by block stays open with the picks highlighted; 5 times per page, Show more times for the next 5 (ranks carry on); earlier unsuitable days and times stay ticked as saved in the form."}, {"date": "2026-11-19", "text": "On the test version (Change 8): 'Back to list'; map removed from beside the page (full width) with a 'View map' pop-up; clicking a service bar shows details only (booking from the Book buttons); opened from a call, the caller's tenant and 'phone call' are pre-filled."}, {"date": "2026-11-18", "text": "Booking page layout (Change 7) made live by Bong."}, {"date": "2026-11-17", "text": "On the test version (jupiter~test), zip ready for Bong to upload: 'Book [service]' and 'See times only' buttons under the address (booked services show a green label); booking opens at the top; booking side 64% / map 36%; step strip Who › Times › Confirm › Done; who and request type shrink to one line with 'change'; time cards show rank, technician's full name and extra drive minutes; 'Not offered' in plain words; property access folded under 'More details for planners'."}, {"date": "2026-11-17", "text": "Service history (one round at a time) made live after diagnostics (only service_history.js, spine.js and manage_view.js differed; all load)."}, {"date": "2026-11-17", "text": "On the test version (jupiter~test): 'Journey 9, 10' replaced by a 'Service history' box showing only the round chosen on the timeline (the current one to start with): what it was, its dates, a status (To book, Booked, On hold, Done, Not required) and each booking with its date, how it ended and the technician. Clicking another block on the timeline shows that round instead, so the booking section is never pushed down."}, {"date": "2026-11-17", "text": "Tenant cards and 'Request came by' made live after diagnostics."}, {"date": "2026-11-17", "text": "On the test version: 'Speaking with' tenant cards (phone numbers and emails together) and a 'Request came by' row: Phone call, SMS, Email, Internal."}, {"date": "2026-11-17", "text": "Agency restrictions, 'Not offered' section and block reasons made live after diagnostics."}, {"date": "2026-11-17", "text": "On the test version: Jupiter reads each agency's Booking Restrictions and leaves those times out (e.g. Gary Peer & Associates Caulfield: no Gas - Standard on Fridays). 'Not offered' names each reason."}, {"date": "2026-11-17", "text": "On the test version: when a whole property is blocked, the rules that block it are listed by name (454220)."}]}, {"id": "confirm-step", "name": "Confirm step", "status": "Testing", "updated": "2026-11-24", "latest": "On test (Changes 9, 14, 16): confirm and done steps one detail per line, warranty Yes/No, attributes optional; done step opens with a big tick and 'Booking completed' (preview line while booking is off)", "history": [{"date": "2026-11-24", "text": "On the test version (Change 16): the done step opens with a big green tick, 'Booking completed' and a one-line summary, then the details; a small grey line 'Preview — booking isn't switched on in Jupiter yet.'"}, {"date": "2026-11-24", "text": "On the test version (Change 14): the done step lists one detail per line (Service, Type, Date, Arriving, Technician, Way in, Request came by, Warranty, Attributes, Notes); 'Book all three' shows Booking 1, Booking 2 and 'For both'."}, {"date": "2026-11-23", "text": "On the test version (Change 9): the confirm step shows one line per detail (Service, Type, Date, Arriving, Technician, Drive, Way in, Request came by, Warranty); warranty Yes/No; booking attributes marked optional with a short description."}, {"date": "2026-11-17", "text": "Made live after diagnostics (only booking.js and manage_view.js differed; both load; live checked for the new code). Reviewed by Bong on 1337527, 506339 and 452109."}, {"date": "2026-11-17", "text": "On the test version (jupiter~test): the confirm step has a 'Booking notes' box and the 10 booking attributes of the current system as buttons with icons. Each is picked by hand, click again to remove. Notes and attributes appear in the 'done' summary and go with the booking event. They aren't saved anywhere yet because the Book button doesn't book yet."}]}, {"id": "home-search", "name": "Home search", "status": "Testing", "updated": "2026-11-24", "latest": "On test (Changes 12–13): DI logo and 'Detector Inspector' header; a card opens the property page straight away (no list page); up to 10 cards; agency cards open the DI agency page; 'Property lists (advanced)' removed", "history": [{"date": "2026-11-24", "text": "On the test version (Change 13): 'Open →' removed from the cards; the whole card opens the property."}, {"date": "2026-11-24", "text": "On the test version (Change 12): IBA's look with the DI logo; one match + Enter or a card click opens the property page directly; several matches stay as cards (up to 10); agency cards open the agency in the DI system; a former tenant's card shows the homes they had; calls follow the same rule; 'Property lists (advanced)' removed."}, {"date": "2026-11-19", "text": "On the test version (Change 8): Shifts and Explore Data cards removed; up to 5 closest-match cards appear under the search box as you type (phone, email, tenant, address, property ID, agency), each with its status; a card, Enter or 'See all' opens the property list. 'Property lists (advanced)' link for the filters. An Amazon Connect link (#call=<phone>) opens the caller's properties on the list."}, {"date": "2026-11-17", "text": "Made live after diagnostics: same 69 files, only search.js and toolbar.js changed, every page loads, and 14 everyday searches give the same results as before."}, {"date": "2026-11-17", "text": "On the test version (jupiter~test): a phone number or email finds the tenants who hold it now and their property; a tenant's name shows property ID and address; state, postcode and 'Australia' at the end of an address are ignored. All results open the booking page directly."}]}, {"id": "properties-list", "name": "Properties list", "status": "Testing", "updated": "2026-11-24", "latest": "Removed on test (Change 12): booking staff go straight from search to the property page", "history": [{"date": "2026-11-24", "text": "On the test version (Change 12): the list page is removed (set table, work items, bulk calls). Search opens the property page directly."}, {"date": "2026-11-19", "text": "On the test version (Change 8): no map, full width; 'Back to search' / 'Back to filters'; addresses open in the same tab; 'Download list' and 'download ticked' (CSV for Excel); bulk book and cancel greyed out; 'open as a set', 'tag' and 'shifts' removed."}, {"date": "2026-11-13", "text": "Bulk cancel and bulk book switched off. They now say \"Not enabled in Jupiter yet\" and send nothing."}, {"date": "2026-11-13", "text": "Copied as-is from Brett's tool."}]}, {"id": "real-booking", "name": "Book button (real bookings)", "status": "Planned", "updated": "2026-11-17", "latest": "On hold: Jupiter stays a prototype that never completes a booking. Real booking needs Marcus's approval, then Brett builds it", "history": [{"date": "2026-11-17", "text": "Bong's decision: no booking is completed from Jupiter and nothing is changed in the main system. After testing, Jupiter goes to Marcus for approval; if approved, Brett makes booking official. Noted for then: appointments only to start, trial before opening to everyone, a final confirm prompt, 'Request came by' at the start of the booking notes."}]}, {"id": "tags-page", "name": "Tags page", "status": "Testing", "updated": "2026-11-24", "latest": "Removed on test (Change 12): booking staff don't make rules; the 'tag' link is gone too", "history": [{"date": "2026-11-24", "text": "On the test version (Change 12): the Tags page and the toolbar's 'tag' link are removed."}, {"date": "2026-11-13", "text": "Saving and closing tags switched off. Pressing them shows \"Not enabled in Jupiter yet\"."}]}, {"id": "whole-tool", "name": "Whole tool", "status": "Testing", "updated": "2026-11-24", "latest": "On test (Changes 9–16): booking-only Jupiter in IBA's look, 37 files; toolbar = DI logo (home) + 'Property N ↗' to the DI system; no map, list page, Tags page or back-in-time slider. Waiting for Bong to make it live", "history": [{"date": "2026-11-24", "text": "On the test version (Change 12): IBA's look across the tool; toolbar is the DI logo and 'Detector Inspector' (home) plus 'Property N ↗' to the DI system; removed the manage chip, the ×, the tag link and the back-in-time slider; map, list page and Tags page deleted (22 files; 37 left)."}, {"date": "2026-11-19", "text": "On the test version (Change 8): Shifts and Explore Data deleted completely, with every link to them tidied (71 → 56 files). Marcus's feedback: an IBA v2 for booking, kept simple, no bulk booking or cancelling, no map."}, {"date": "2026-11-13", "text": "Exact copy of Brett's whole_new_world tool, checked byte for byte. Live at /SupernovaSandbox/sites/jupiter/."}]}];
+
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" })[c]);
 const fmt = d => d ? new Date(d + "T00:00").toLocaleDateString("en-AU", { day:"numeric", month:"short", year:"numeric" }) : "—";
 let rows = [], open = new Set();
@@ -206,7 +57,7 @@ function draw() {
   const shown = rows.filter(r => (!st || r.status === st) && (!q || JSON.stringify([r.name, r.latest, r.history]).toLowerCase().includes(q)))
     .sort((a, b) => (b.updated || "").localeCompare(a.updated || "") || a.order - b.order);
   const last = rows.map(r => r.updated).filter(Boolean).sort().pop();
-  document.getElementById("summary").textContent = `Snapshot of 17 Nov 2026 · one row per area · ${rows.length} areas · last change ${fmt(last)}`;
+  document.getElementById("summary").textContent = `Snapshot of 24 Nov 2026 · ${rows.length} areas · last change ${fmt(last)} · live version on claude.ai`;
   const list = document.getElementById("list");
   if (!shown.length) { list.innerHTML = `<div class="empty">${rows.length ? "No changes match." : "No changes logged yet."}</div>`; return; }
   list.innerHTML = shown.map(r => {
@@ -223,6 +74,7 @@ document.getElementById("list").addEventListener("click", e => {
   open.has(row.dataset.id) ? open.delete(row.dataset.id) : open.add(row.dataset.id); draw();
 });
 document.getElementById("q").oninput = draw; document.getElementById("st").onchange = draw;
+// Snapshot for GitHub (24 Nov 2026): the rows are built in; the live tracker is https://claude.ai/artifact/F7MWn9H4wpaWBDLT66HZ71
 rows = DATA.map((d, i) => ({ order: i, ...d }));
 draw();
 </script>
